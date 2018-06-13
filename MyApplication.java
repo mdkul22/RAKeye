@@ -4,10 +4,10 @@ import android.app.Application;
 
 public class MyApplication extends Application {
 
-    private String response;
-    private String mac;
+    private String response = "-1";
+    private String mac = "-1";
     public String getMyResponse() {
-        return response;
+        return this.response;
     }
 
     public void setMac(String s)
