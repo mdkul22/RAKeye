@@ -63,7 +63,7 @@ public class LocationOption extends AppCompatActivity implements OnItemSelectedL
             typeAlert.show(getFragmentManager(), "type_dialog");
             return;
         }
-        Intent intent = new Intent(this, LocationOption.class);
+        Intent intent = new Intent(this, PopPlan.class);
         startActivity(intent);
     }
 }
