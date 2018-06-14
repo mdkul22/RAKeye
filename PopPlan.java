@@ -2,13 +2,14 @@ package com.cisco.rakeye;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 public class PopPlan extends AppCompatActivity {
-
+    private static final String TAG="PopPlan";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class PopPlan extends AppCompatActivity {
             if(floor.equals("0")) {
                 SubsamplingScaleImageView imageView = findViewById(R.id.imageView);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl120));
+                Log.d(TAG, "Entered bgl 12 ground");
             }
             else if(floor.equals("1")) {
                 SubsamplingScaleImageView imageView = findViewById(R.id.imageView);

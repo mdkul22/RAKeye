@@ -3,6 +3,7 @@ package com.cisco.rakeye;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,7 +11,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class LocationOption extends AppCompatActivity implements OnItemSelectedListener{
-
+    static final private String TAG = "LocationOption";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +43,14 @@ public class LocationOption extends AppCompatActivity implements OnItemSelectedL
         Spinner spinner = (Spinner) parent;
         if (spinner.getId() == R.id.spinner2) {
             String building = parent.getItemAtPosition(position).toString();
-            ((MyApplication) getApplication()).setMyReponse(building);
+            ((MyApplication) getApplication()).setBuilding(building);
+            Log.d(TAG, "building is " + ((((MyApplication) getApplication()).getBuilding())));
         }
         else if (spinner.getId() == R.id.spinner)
         {
             String floor = parent.getItemAtPosition(position).toString();
-            ((MyApplication) getApplication()).setMyReponse(floor);
+            ((MyApplication) getApplication()).setFloor(floor);
+            Log.d(TAG, "floor is " + ((((MyApplication) getApplication()).getFloor())));
         }
     }
     public void onNothingSelected(AdapterView<?> arg0) {
@@ -55,7 +58,7 @@ public class LocationOption extends AppCompatActivity implements OnItemSelectedL
     }
 
     public void OnButton(View view){
-        if (!(((MyApplication) getApplication()).getBuilding().equals("-1")
+        if ((((MyApplication) getApplication()).getBuilding().equals("-1")
                 || ((MyApplication) getApplication()).getFloor().equals("-1")))
         {
             AlertDialogFragment typeAlert = new AlertDialogFragment();
