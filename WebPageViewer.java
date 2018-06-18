@@ -37,6 +37,7 @@ public class WebPageViewer extends AppCompatActivity {
         final String port = in3.getText().toString();
         Log.d(TAG, port);
         final String server = in4.getText().toString();
+        ((MyApplication) getApplication()).storeX(server);
         Log.d(TAG, server);
         final String type = in5.getText().toString();
 

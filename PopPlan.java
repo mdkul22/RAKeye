@@ -1,18 +1,23 @@
 package com.cisco.rakeye;
 
-import android.app.Activity;
+
+import android.content.Intent;
 import android.graphics.PointF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+
+import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 
 public class PopPlan extends AppCompatActivity {
@@ -34,6 +39,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -56,6 +63,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -78,6 +87,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -100,6 +111,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -122,6 +135,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -145,6 +160,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -166,6 +183,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -188,6 +207,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -210,6 +231,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -232,6 +255,8 @@ public class PopPlan extends AppCompatActivity {
                     public boolean onSingleTapConfirmed(MotionEvent e) {
                         if (imageView.isReady()) {
                             PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                            ((MyApplication)getApplication()).storePosX(Float.toString(e.getX()));
+                            ((MyApplication)getApplication()).storePosY(Float.toString(e.getY()));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -249,6 +274,40 @@ public class PopPlan extends AppCompatActivity {
     }
     public void OnClick(View view)
     {
+        String server = ((MyApplication) getApplication()).getX();
+        String clientId = MqttClient.generateClientId();
+        MqttAndroidClient client =
+                new MqttAndroidClient(this.getApplicationContext(), "tcp://"+server+":1883",
+                        clientId);
+
+        try {
+            IMqttToken token = client.connect();
+            token.setActionCallback(new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    // We are connected
+                    Log.d(TAG, "MQTTonSuccess");
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    // Something went wrong e.g. connection timeout or firewall problems
+                    Log.d(TAG, "MQTTonFailure");
+
+                }
+            });
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        String topic = "tqb/setup";
+        String message = "{mac:" + ((MyApplication)getApplication()).getMac() + "," +
+                "building:" + ((MyApplication)getApplication()).getBuilding() + "," +
+                "floor:" + ((MyApplication)getApplication()).getFloor() + "," +
+                "X:" + ((MyApplication)getApplication()).getPosX() + "," +
+                "Y:" + ((MyApplication)getApplication()).getPosY() + "," +
+                " }";
+        Intent intent = new Intent(this, NotificationListener.class);
+        startActivity(intent);
         return;
     }
 }
