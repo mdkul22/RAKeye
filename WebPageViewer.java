@@ -72,8 +72,16 @@ public class WebPageViewer extends AppCompatActivity {
                             return;
                         }
                         String mac = res.substring(res.indexOf("Mac:") + 4, res.indexOf('&', res.indexOf("Mac:") + 4));
-                        Log.d(TAG, "mac is" + mac);
-                        ((MyApplication) getApplication()).setMac(mac);
+                        int[] result = new int[mac.length()];
+                        for (int i = 0; i < mac.length(); i++) {
+                            result[i] = mac.charAt(i);
+                        }
+                        String x = "";
+                        for(int i=0;i<mac.length();i++){
+                            x += Integer.toString(result[i]);
+                        }
+                        Log.d(TAG, "mac is" + x);
+                        ((MyApplication) getApplication()).setMac(x);
                         Log.d(TAG, "HTTP Send start");
                         // begin the HTTP send
                         String url1;

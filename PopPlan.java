@@ -18,6 +18,9 @@ import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.io.UnsupportedEncodingException;
 
 
 public class PopPlan extends AppCompatActivity {
@@ -30,7 +33,7 @@ public class PopPlan extends AppCompatActivity {
         String bld;
         bld = ((MyApplication) getApplication()).getBuilding();
         String floor = ((MyApplication) getApplication()).getFloor();
-        if(bld.equals("BGL12")) {
+        if(bld.equals("12")) {
             if(floor.equals("0")) {
                 final PinView imageView = (PinView)findViewById(R.id.imageView);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl120));
@@ -151,7 +154,7 @@ public class PopPlan extends AppCompatActivity {
                 });
             }
             }
-        if(bld.equals("BGL11")) {
+        if(bld.equals("11")) {
             if(floor.equals("0")) {
                 final PinView imageView = (PinView)findViewById(R.id.imageView);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl110));
@@ -274,9 +277,11 @@ public class PopPlan extends AppCompatActivity {
     }
     public void OnClick(View view)
     {
+        // MQTT setup
         String server = ((MyApplication) getApplication()).getX();
+        Log.d(TAG, server);
         String clientId = MqttClient.generateClientId();
-        MqttAndroidClient client =
+        final MqttAndroidClient client =
                 new MqttAndroidClient(this.getApplicationContext(), "tcp://"+server+":1883",
                         clientId);
 
@@ -286,6 +291,31 @@ public class PopPlan extends AppCompatActivity {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
                     // We are connected
+
+                    String topic = "tqb/setup";
+                    String payload = "{ " +
+                            "\"mac\":" + ((MyApplication)getApplication()).getMac() + "," +
+                            "\"building\":" + ((MyApplication)getApplication()).getBuilding() + "," +
+                            "\"floor\":" + ((MyApplication)getApplication()).getFloor() + "," +
+                            "\"X\":" + ((MyApplication)getApplication()).getPosX() + "," +
+                            "\"Y\":" + ((MyApplication)getApplication()).getPosY() +
+                            " }";
+                    byte[] encodedPayload;
+                    // publish message to broker
+                    try {
+                        encodedPayload = payload.getBytes("UTF-8");
+                        MqttMessage message = new MqttMessage(encodedPayload);
+                        Log.d(TAG,"message is " + payload);
+                        Log.d(TAG,"topic is " + topic);
+                        if(client.isConnected()) {
+                            client.publish(topic, message);
+                        }
+                        else{
+                            Log.d(TAG, "UNABLE TO PRINT");
+                        }
+                    } catch (UnsupportedEncodingException | MqttException e) {
+                        e.printStackTrace();
+                    }
                     Log.d(TAG, "MQTTonSuccess");
                 }
 
@@ -298,14 +328,9 @@ public class PopPlan extends AppCompatActivity {
             });
         } catch (MqttException e) {
             e.printStackTrace();
+            Log.d(TAG, "mqtt exception lol");
         }
-        String topic = "tqb/setup";
-        String message = "{mac:" + ((MyApplication)getApplication()).getMac() + "," +
-                "building:" + ((MyApplication)getApplication()).getBuilding() + "," +
-                "floor:" + ((MyApplication)getApplication()).getFloor() + "," +
-                "X:" + ((MyApplication)getApplication()).getPosX() + "," +
-                "Y:" + ((MyApplication)getApplication()).getPosY() + "," +
-                " }";
+
         Intent intent = new Intent(this, NotificationListener.class);
         startActivity(intent);
         return;
