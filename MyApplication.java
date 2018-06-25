@@ -1,6 +1,9 @@
 package com.cisco.rakeye;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 
 public class MyApplication extends Application {
 
@@ -11,6 +14,7 @@ public class MyApplication extends Application {
     private String x = "-1";
     private String locx = "-1";
     private String locy = "-1";
+    private String notify = "-1";
 
     public void storeX(String a){
         this.x = a;
@@ -27,6 +31,13 @@ public class MyApplication extends Application {
 
     public String getPosY(){
         return this.locy;
+    }
+    public void setNotify(String not){
+        this.notify = not;
+    }
+    public String getNotify()
+    {
+        return this.notify;
     }
 
     public void storePosY(String y)
@@ -71,5 +82,23 @@ public class MyApplication extends Application {
 
     public String getFloor(){
         return this.floor;
+    }
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.notify);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            String CHANNEL_ID = "notifier";
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+
     }
 }
