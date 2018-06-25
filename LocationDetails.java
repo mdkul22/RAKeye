@@ -17,7 +17,7 @@ public class LocationDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_details);
         String bld;
-        bld = ((MyApplication) getApplication()).getBuilding();
+        bld = ((MyApplication) getApplication()).getBuildingS();
         String floor = ((MyApplication) getApplication()).getFloor();
         if(bld.equals("12")) {
             if(floor.equals("0")) {

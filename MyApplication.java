@@ -14,10 +14,16 @@ public class MyApplication extends Application {
     private String x = "-1";
     private String locx = "-1";
     private String locy = "-1";
-    private String notify = "-1";
-
+    private String buildingS = "-1";
     public void storeX(String a){
         this.x = a;
+    }
+    public void storeBuildingS(String s){
+        this.buildingS = s;
+    }
+    public String getBuildingS()
+    {
+        return buildingS;
     }
 
     public String getPosX(){
@@ -31,13 +37,6 @@ public class MyApplication extends Application {
 
     public String getPosY(){
         return this.locy;
-    }
-    public void setNotify(String not){
-        this.notify = not;
-    }
-    public String getNotify()
-    {
-        return this.notify;
     }
 
     public void storePosY(String y)

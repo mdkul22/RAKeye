@@ -16,7 +16,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 
 public class SubscribeService extends IntentService implements MqttCallback {
     private String TAG = "SubscribeService";
@@ -79,28 +78,26 @@ public class SubscribeService extends IntentService implements MqttCallback {
         ((MyApplication) getApplication()).storePosX(posX);
         ((MyApplication) getApplication()).storePosX(posY);
         ((MyApplication) getApplication()).storeX(alert);
+        String bldS = ((MyApplication) getApplication()).getBuildingS();
         Log.d(TAG, "json received is: " + msg);
-        Intent intent = new Intent(this, LocationDetails.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        String CHANNEL_ID = "mqtt subscriber";
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.icon)
-                .setContentTitle("My notification")
-                .setContentText("Hello World!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // Set the intent that will fire when the user taps the notification
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        int notificationId = -1;
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(notificationId, mBuilder.build());
-
-        /*
-         * To test ,publish  "open"/"close" at topic you subscibed app to in above .
-         * */
-
+        if(bldS.equals(building)) {
+            Intent intent = new Intent(this, LocationDetails.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            String CHANNEL_ID = "mqtt subscriber";
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                    .setSmallIcon(R.drawable.icon)
+                    .setContentTitle("My notification")
+                    .setContentText("Hello World!")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    // Set the intent that will fire when the user taps the notification
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            int notificationId = -1;
+            // notificationId is a unique int for each notification that you must define
+            notificationManager.notify(notificationId, mBuilder.build());
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.cisco.rakeye;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,8 +32,10 @@ public class NotificationListener extends AppCompatActivity implements AdapterVi
         Spinner spinner = (Spinner) parent;
         if (spinner.getId() == R.id.spinner4) {
             String building = parent.getItemAtPosition(position).toString();
-            ((MyApplication) getApplication()).setNotify(building);
-            Log.d(TAG, "building is " + ((((MyApplication) getApplication()).getNotify())));
+            ((MyApplication) getApplication()).storeBuildingS(building);
+            Intent intent = new Intent(this, SubscribeService.class);
+            startService(intent);
+            Log.d(TAG, "building is " + ((((MyApplication) getApplication()).getBuildingS())));
         }
         else
             return;
