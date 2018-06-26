@@ -32,10 +32,13 @@ public class NotificationListener extends AppCompatActivity implements AdapterVi
         Spinner spinner = (Spinner) parent;
         if (spinner.getId() == R.id.spinner4) {
             String building = parent.getItemAtPosition(position).toString();
-            ((MyApplication) getApplication()).storeBuildingS(building);
-            Intent intent = new Intent(this, SubscribeService.class);
-            startService(intent);
-            Log.d(TAG, "building is " + ((((MyApplication) getApplication()).getBuildingS())));
+            if(!building.equals("-")) {
+                ((MyApplication) getApplication()).storeBuildingS(building);
+                Intent intent = new Intent(this, SubscribeService.class);
+                startService(intent);
+                Log.d(TAG, "building is " + ((((MyApplication) getApplication()).getBuildingS())));
+            }
+            else return;
         }
         else
             return;

@@ -11,12 +11,18 @@ public class MyApplication extends Application {
     private String mac = "-1";
     private String building = "-1";
     private String floor = "-1";
-    private String x = "-1";
+    private String x = "173.39.91.82"; // hardcoded currently as when you apply notification button, the mqtt server needs to be there
     private String locx = "-1";
     private String locy = "-1";
     private String buildingS = "-1";
-    public void storeX(String a){
-        this.x = a;
+    private String alert = "";
+    public void storeAlert(String s)
+    {
+        this.alert = s;
+    }
+    public String getAlert()
+    {
+        return this.alert;
     }
     public void storeBuildingS(String s){
         this.buildingS = s;
@@ -46,6 +52,10 @@ public class MyApplication extends Application {
 
     public String getX(){
         return this.x;
+    }
+
+    public void storeX(String a){
+        this.x = a;
     }
 
     public String getMyResponse() {

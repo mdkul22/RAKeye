@@ -77,7 +77,7 @@ public class SubscribeService extends IntentService implements MqttCallback {
         ((MyApplication) getApplication()).setFloor(floor);
         ((MyApplication) getApplication()).storePosX(posX);
         ((MyApplication) getApplication()).storePosX(posY);
-        ((MyApplication) getApplication()).storeX(alert);
+        ((MyApplication) getApplication()).storeAlert(alert);
         String bldS = ((MyApplication) getApplication()).getBuildingS();
         Log.d(TAG, "json received is: " + msg);
         if(bldS.equals(building)) {

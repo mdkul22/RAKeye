@@ -35,7 +35,7 @@ public class PopPlan extends AppCompatActivity {
         String floor = ((MyApplication) getApplication()).getFloor();
         if(bld.equals("12")) {
             if(floor.equals("0")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl120));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -59,7 +59,7 @@ public class PopPlan extends AppCompatActivity {
                 Log.d(TAG, "Entered bgl 12 ground");
             }
             else if(floor.equals("1")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl121));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -83,7 +83,7 @@ public class PopPlan extends AppCompatActivity {
             }
 
             else if(floor.equals("2")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl122));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -107,7 +107,7 @@ public class PopPlan extends AppCompatActivity {
             }
 
             else if(floor.equals("3")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl123));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -131,7 +131,7 @@ public class PopPlan extends AppCompatActivity {
             }
 
             else if(floor.equals("4")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl124));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -156,7 +156,7 @@ public class PopPlan extends AppCompatActivity {
             }
         if(bld.equals("11")) {
             if(floor.equals("0")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl110));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -179,7 +179,7 @@ public class PopPlan extends AppCompatActivity {
                 });
             }
             else if(floor.equals("1")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl111));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -203,7 +203,7 @@ public class PopPlan extends AppCompatActivity {
             }
 
             else if(floor.equals("2")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl112));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -227,7 +227,7 @@ public class PopPlan extends AppCompatActivity {
             }
 
             else if(floor.equals("3")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl113));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -251,7 +251,7 @@ public class PopPlan extends AppCompatActivity {
             }
 
             else if(floor.equals("4")) {
-                final PinView imageView = (PinView)findViewById(R.id.imageView);
+                final PinView imageView = (PinView)findViewById(R.id.imageView2);
                 imageView.setImage(ImageSource.resource(R.drawable.bgl114));
                 final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
                     @Override
