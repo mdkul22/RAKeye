@@ -1,5 +1,6 @@
 package com.cisco.rakeye;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.PointF;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import java.io.UnsupportedEncodingException;
 
 public class LocationDetails extends AppCompatActivity {
     private String TAG = "LocationDetails";
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            Log.d(TAG, "entering" + x);
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -62,7 +65,7 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
                             // ...
                         }
@@ -86,9 +89,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
-                            imageView.setPin(sCoord);
-                            // ...
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
+                            imageView.setPin(sCoord);                            // ...
                         }
                         return true;
                     }
@@ -110,9 +112,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
-                            // ...
                         }
                         return true;
                     }
@@ -134,9 +135,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
-                            // ...
                         }
                         return true;
                     }
@@ -159,9 +159,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
-                            // ...
                         }
                         return true;
                     }
@@ -182,9 +181,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
-                            // ...
                         }
                         return true;
                     }
@@ -206,9 +204,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
-                            // ...
                         }
                         return true;
                     }
@@ -230,9 +227,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
-                            // ...
                         }
                         return true;
                     }
@@ -254,9 +250,8 @@ public class LocationDetails extends AppCompatActivity {
                         if (imageView.isReady()) {
                             String x = ((MyApplication)getApplication()).getPosX();
                             String y = ((MyApplication)getApplication()).getPosY();
-                            PointF sCoord = imageView.viewToSourceCoord(Float.valueOf(x), Float.valueOf(y));
+                            PointF sCoord = new PointF(Float.valueOf(x), Float.valueOf(y));
                             imageView.setPin(sCoord);
-                            // ...
                         }
                         return true;
                     }
@@ -324,6 +319,6 @@ public class LocationDetails extends AppCompatActivity {
             Log.d(TAG, "mqtt exception lol");
         }
 
-        return;
+        this.finish();
     }
 }

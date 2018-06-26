@@ -11,7 +11,7 @@ public class MyApplication extends Application {
     private String mac = "-1";
     private String building = "-1";
     private String floor = "-1";
-    private String x = "173.39.91.82"; // hardcoded currently as when you apply notification button, the mqtt server needs to be there
+    private String x = "iot.eclipse.org"; // hardcoded currently as when you apply notification button, the mqtt server needs to be there
     private String locx = "-1";
     private String locy = "-1";
     private String buildingS = "-1";
