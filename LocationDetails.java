@@ -284,9 +284,9 @@ public class LocationDetails extends AppCompatActivity {
 
                     String topic = "tqb/topic";
                     String payload = "{ " +
-                            "\"mac\":" + ((MyApplication)getApplication()).getMac() + "," +
-                            "\"alert\":" + ((MyApplication)getApplication()).getAlert() + "," +
-                            "\"alertVal\": 0" +
+                            "\"mac\":\"" + ((MyApplication)getApplication()).getMac() + "\"," +
+                            "\"alert\":" + ((MyApplication)getApplication()).getAlert() + "\"," +
+                            "\"alertVal\": \"0\"" +
                             " }";
                     byte[] encodedPayload;
                     // publish message to broker

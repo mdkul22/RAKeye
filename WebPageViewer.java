@@ -85,7 +85,7 @@ public class WebPageViewer extends AppCompatActivity {
                         Log.d(TAG, "HTTP Send start");
                         // begin the HTTP send
                         String url1;
-                        url1 = url + "a?ssid=" + ssid + "&pass=" + pass + "&serv=" + server + "&port=" + port + "&type=" + type;
+                        url1 = url + "a?ssid=" + ssid + "&pass=" + pass + "&serv=" + server + "&port=" + port + "&type=" + type + "&mac=" + x;
                         Log.d(TAG, url1);
                         StringRequest sendRequest = new StringRequest(Request.Method.GET, url1,
                                 new Response.Listener<String>() {

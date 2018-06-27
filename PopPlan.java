@@ -294,11 +294,11 @@ public class PopPlan extends AppCompatActivity {
 
                     String topic = "tqb/setup";
                     String payload = "{ " +
-                            "\"mac\":" + ((MyApplication)getApplication()).getMac() + "," +
-                            "\"building\":" + ((MyApplication)getApplication()).getBuilding() + "," +
-                            "\"floor\":" + ((MyApplication)getApplication()).getFloor() + "," +
-                            "\"X\":" + ((MyApplication)getApplication()).getPosX() + "," +
-                            "\"Y\":" + ((MyApplication)getApplication()).getPosY() +
+                            "\"mac\":\"" + ((MyApplication)getApplication()).getMac() + "\"," +
+                            "\"building\":\"" + ((MyApplication)getApplication()).getBuilding() + "\"," +
+                            "\"floor\":\"" + ((MyApplication)getApplication()).getFloor() + "\"," +
+                            "\"posX\":\"" + ((MyApplication)getApplication()).getPosX() + "\"," +
+                            "\"posY\":\"" + ((MyApplication)getApplication()).getPosY() + "\"" +
                             " }";
                     byte[] encodedPayload;
                     // publish message to broker
